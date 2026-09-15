@@ -10,7 +10,6 @@ This tool is based on the idea of Pomodoro Technique.
 
 - simple input control (ENTER key to pause & resume the timer)
 - finished work session counter
-- embedded system sound at the end of each session (no additional files needed)
 - quit function with displaying how much time you spent working in total (q key, then press ENTER)
 - writing the data of each session's total time in .json file (automatically creates data folder with the file inside)
 
@@ -19,6 +18,7 @@ This tool is based on the idea of Pomodoro Technique.
 - python v3.14.4 or slightly older (how low can you actually go with your python version is yet to be tested) 
 - terminal emulator of your choice
 - preferably linux environment (optional, because can run on Windows, but again this possibility is untested yet)
+- playsound3 python library installed (for timer estimation sound playback)
 
 # installation:
 1. download the pomodoro.py file from this repository. 
