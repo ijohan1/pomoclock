@@ -3,6 +3,7 @@
 
 import os, json, time, threading, sys
 from datetime import datetime
+from playsound3 import playsound
 
 floppy = (""" _.........._
 | |        | |
@@ -21,8 +22,8 @@ cacti = ("""           .:'
       :_________`-;
        `.__.-.__.'""" )
 #-----робочі інтервали--------
-work = 45 * 60
-breakk = 5 * 60
+work = 1
+breakk = 1
 lunch = 10 * 60
 #_____________________________
 waiting = False
@@ -41,13 +42,8 @@ def ascii(state):
     else: return cacti
 
 
-def beep():
-    if sys.platform.startswith("win"):
-        import winsound
-        winsound.Beep(1000, 3000)
-    else:
-        os.system('canberra-gtk-play -i complete')
-
+def beep(): #change for sound
+    playsound("beep.mp3")
 
 def render(paused, state, seconds, sessions):
     clear()
