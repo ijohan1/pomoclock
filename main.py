@@ -1,8 +1,9 @@
 #/usr/bin/env python3
-
-
 import os, json, time, threading, sys
 from datetime import datetime
+
+import basevars, input_, output, json_
+
 
 
 def main():
@@ -10,19 +11,19 @@ def main():
     counter = 0
 
     while running:
-        if state == "work":
-            worktimer(sessions)
+        if basevars.state == "work":
+            timer.worktimer(sessions)
             counter += 1
-            sessions += 1
-            if counter %4 == 0: state = "lunch"
-            else: state = "break"
+            basevars.sessions += 1
+            if counter %4 == 0: basevars.state = "lunch"
+            else: basevars.state = "break"
 
-        elif state == "break":
-            breaktimer(sessions)
-            state = "work"
+        elif basevars.state == "break":
+            timer.breaktimer(sessions)
+            basevars.state = "work"
 
-        elif state == "lunch":
-            lunchtimer(sessions)
-            state = "work"
+        elif basevars.state == "lunch":
+            timer.lunchtimer(sessions)
+            basevars.state = "work"
 
 

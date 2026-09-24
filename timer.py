@@ -1,10 +1,14 @@
+import os, json, time, threading, sys
+from datetime import datetime
+
+import basevars
 
 def beep(): #change for sound
     os.system('canberra-gtk-play -i complete')
 
 
 def basetimer(duration, state, sessions):
-    global paused, waiting, totalseconds, running
+#    global paused, waiting, totalseconds, running
     start = time.time()
     elapsed = 0
     lastpaused = None
