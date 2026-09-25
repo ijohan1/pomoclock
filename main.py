@@ -6,7 +6,7 @@ import basevars, input_, output, json_
 
 
 
-def main():
+def loop():
     global state, sessions
     counter = 0
 
@@ -26,4 +26,14 @@ def main():
             timer.lunchtimer(sessions)
             basevars.state = "work"
 
+
+
+if __name__ == "__main__":
+    print("\033[?25l")
+    t = threading.Thread(target=inputs, daemon=True)
+    t.start()
+    try: loop()
+    finally:
+        json_.writing()
+        output.showstats()
 

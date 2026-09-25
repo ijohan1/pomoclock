@@ -37,11 +37,3 @@ def writing():
 		os.fsync(f.fileno())
 	os.replace(tmp_file, file)
 
-if __name__ == "__main__":
-    print("\033[?25l")
-    t = threading.Thread(target=inputs, daemon=True)
-    t.start()
-    try: main()
-    finally:
-        writing()
-        showstats()

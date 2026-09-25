@@ -23,7 +23,7 @@ cacti = ("""           .:'
 
 def clear(): os.system('cls' if os.name=='nt' else 'clear')
 
-def ascii(basevars.state):
+def ascii():
     if basevars.state == "work":
         return floppy
     else: return cacti
