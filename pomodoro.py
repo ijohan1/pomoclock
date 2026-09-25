@@ -3,7 +3,6 @@
 
 import os, json, time, threading, sys
 from datetime import datetime
-from playsound3 import playsound
 
 floppy = (""" _.........._
 | |        | |
@@ -42,8 +41,8 @@ def ascii(state):
     else: return cacti
 
 
-def beep(): #change for sound
-    playsound("beep.mp3")
+def beep(): 
+    os.system('canberra-gtk-play -i complete')
 
 def render(paused, state, seconds, sessions):
     clear()
