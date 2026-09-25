@@ -1,4 +1,4 @@
-import os, json, time, threading, sys
+import os, time
 from datetime import datetime
 
 import basevars
@@ -7,7 +7,7 @@ def beep(): #change for sound
     os.system('canberra-gtk-play -i complete')
 
 
-def basetimer(duration, state, sessions):
+def basetimer(duration, basevars.state, basevars.sessions):
 #    global paused, waiting, totalseconds, running
     start = time.time()
     elapsed = 0
@@ -18,7 +18,7 @@ def basetimer(duration, state, sessions):
     while seconds > 0 and running:
         if paused:
             if lastpaused is None: lastpaused = time.time()
-            render(paused, state, seconds, sessions)
+            render(basevars.paused, basevars.state, seconds, basevars.sessions)
             time.sleep(0.1)
             continue
 
@@ -29,22 +29,22 @@ def basetimer(duration, state, sessions):
         elapsed_ = int(time.time() - start - elapsed)
         seconds = duration - elapsed_
 
-        render(paused, state, seconds, sessions)
+        render(basevars.paused, basevars.state, seconds, basevars.sessions)
         time.sleep(0.2)
 #=======================
-    global totalseconds
-    totalseconds += (duration - seconds)
+    basevars.totalseconds += (duration - seconds)
     beep()
     print("час вийшов. далі? (enter)")
-    waiting = True
-    while waiting and running: time.sleep(0.1)
+    basevars.waiting = True
+    while basevars.waiting and basevars.running: time.sleep(0.1)
 
 def worktimer(sessions):
-    basetimer(work, "work", sessions)
+    basetimer(basevars.work, "work", basevars.sessions)
 
 def breaktimer(sessions):
-    basetimer(breakk, "break", sessions)
+    basetimer(basevars.breakk, "break", basevars.sessions)
 
 def lunchtimer(sessions):
-    basetimer(lunch, "lunch", sessions)
+    basetimer(basevars.lunch, "lunch", basevars.sessions)
+    
 

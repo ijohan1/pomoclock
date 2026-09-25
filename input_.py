@@ -1,12 +1,13 @@
+import basevars
+
 def inputs():
-    global paused, waiting, running, sessions
     while True:
         cmd = input()
         if cmd == "q":
-            running = waiting = False
+            basevars.running = waiting = False
             break
 
         if waiting: waiting =  False
         else:
-            paused = not paused
-            if not paused: clear()
+            basevars.paused = not pbasevars.paused
+            if not basevars.paused: clear()

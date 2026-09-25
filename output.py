@@ -1,3 +1,9 @@
+import os
+
+import basevars
+
+
+
 floppy = (""" _.........._
 | |        | |
 | |        | |
@@ -17,19 +23,19 @@ cacti = ("""           .:'
 
 def clear(): os.system('cls' if os.name=='nt' else 'clear')
 
-def ascii(state):
-    if state == "work":
+def ascii(basevars.state):
+    if basevars.state == "work":
         return floppy
     else: return cacti
 
 
 
-def render(paused, state, seconds, sessions):
+def render(basevars.paused, basevars.state, basevars.seconds, basevars.sessions):
     clear()
-    print(ascii(state))
-    mins, secs = divmod(seconds, 60)
-    line = (f" | {state} |  {mins:02d}:{secs:02d} | "f"сесій: {sessions} |")
-    if paused:
+    print(ascii(basevars.state))
+    mins, secs = divmod(basevars.seconds, 60)
+    line = (f" | {basevars.state} |  {mins:02d}:{secs:02d} | "f"сесій: {basevars.sessions} |")
+    if basevars.paused:
         print(line + " ⏸ ") #, end = "\r"
     else: print(line) #, end = "\r"
 
@@ -37,8 +43,8 @@ def render(paused, state, seconds, sessions):
 
 def showstats():
     clear()
-    hours = totalseconds // 3600
-    mins = (totalseconds % 3600) // 60
-    secs = totalseconds % 60
-    print(f"роботу завершено.\n відроблених помодоро сесій: {sessions}.\n було відпрацьовано {hours}г. {mins}хв. {secs}с.")
+    hours = totalbasevars.seconds // 3600
+    mins = (totalbasevars.seconds % 3600) // 60
+    secs = totalbasevars.seconds % 60
+    print(f"роботу завершено.\n відроблених помодоро сесій: {basevars.sessions}.\n було відпрацьовано {hours}г. {mins}хв. {secs}с.")
 

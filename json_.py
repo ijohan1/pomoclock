@@ -1,6 +1,8 @@
+import json, os
+
 def writing():
-	global totalseconds, sessions
-	if totalseconds <= 0: return
+#	global totalseconds, sessions
+	if basevars.totalseconds <= 0: return
 	today = datetime.now().strftime("%d/%m/%y")
 
 	base = os.path.dirname(os.path.abspath(__file__))
@@ -8,6 +10,7 @@ def writing():
 	os.makedirs(datdir, exist_ok = True)
 	file = os.path.join(datdir, "statistics.json")
 	data = {}
+
 	if os.path.exists(file):
 		try:
 			with open(file, "r") as f:
@@ -18,8 +21,8 @@ def writing():
 			
 	entry = {
         "sessions": sessions,
-        "time": f"{totalseconds//3600}h {(totalseconds%3600)//60}m {totalseconds%60}s",
-        "time_seconds": totalseconds
+        "time": f"{basevars.totalseconds//3600}h {(basevars.totalseconds%3600)//60}m {basevars.totalseconds%60}s",
+        "time_seconds": basevars.totalseconds
         }
 
 	if today not in data:

@@ -1,7 +1,8 @@
+#____ change for another time management _________
 work = 45 * 60 
 breakk = 5 * 6
 lunch = 10 * 60
-#_____________________________
+#_________________________________________________
 waiting = False
 running = True
 
