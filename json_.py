@@ -1,5 +1,7 @@
 import json, os
 
+import basevars
+
 def writing():
 #	global totalseconds, sessions
 	if basevars.totalseconds <= 0: return

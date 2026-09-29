@@ -1,13 +1,13 @@
 import os, time
 from datetime import datetime
 
-import basevars
+import basevars, output
 
 def beep(): #change for sound
     os.system('canberra-gtk-play -i complete')
 
 
-def basetimer(duration, basevars.state, basevars.sessions):
+def basetimer(duration, state, sessions): # basevars.state, basevars.sessions
 #    global paused, waiting, totalseconds, running
     start = time.time()
     elapsed = 0
@@ -15,10 +15,10 @@ def basetimer(duration, basevars.state, basevars.sessions):
     seconds = duration
 
 #=======пауза і рух===========
-    while seconds > 0 and running:
-        if paused:
+    while seconds > 0 and basevars.running:
+        if basevars.paused:
             if lastpaused is None: lastpaused = time.time()
-            render(basevars.paused, basevars.state, seconds, basevars.sessions)
+            output.render(basevars.paused, basevars.state, seconds, basevars.sessions)
             time.sleep(0.1)
             continue
 
@@ -29,7 +29,7 @@ def basetimer(duration, basevars.state, basevars.sessions):
         elapsed_ = int(time.time() - start - elapsed)
         seconds = duration - elapsed_
 
-        render(basevars.paused, basevars.state, seconds, basevars.sessions)
+        output.render(basevars.paused, basevars.state, seconds, basevars.sessions)
         time.sleep(0.2)
 #=======================
     basevars.totalseconds += (duration - seconds)

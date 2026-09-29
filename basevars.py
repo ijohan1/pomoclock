@@ -1,15 +1,23 @@
-#____ change for another time management _________
-work = 45 * 60 
-breakk = 5 * 6
-lunch = 10 * 60
-#_________________________________________________
-waiting = False
-running = True
+def init():
+   global  work 
+   work = 45 * 60 
+   global  breakk
+   breakk = 5 * 6
+   global  lunch 
+   lunch = 10 * 60
 
+   global  waiting 
+   waiting = False
+   global  running 
+   running = True
 
-
-paused = False
-state = "work"
-worked = 0
-sessions = 0
-totalseconds = 0
+   global  paused 
+   paused = False
+   global  state 
+   state = "work"
+   global  worked 
+   worked = 0
+   global  sessions 
+   sessions = 0
+   global  totalseconds 
+   totalseconds = 0

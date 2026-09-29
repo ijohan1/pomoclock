@@ -2,17 +2,18 @@
 import os, json, time, threading, sys
 from datetime import datetime
 
-import basevars, input_, output, json_
+import basevars, input_, output, json_, timer
 
 
+basevars.init()
 
 def loop():
     global state, sessions
     counter = 0
 
-    while running:
+    while basevars.running:
         if basevars.state == "work":
-            timer.worktimer(sessions)
+            timer.worktimer(basevars.sessions)
             counter += 1
             basevars.sessions += 1
             if counter %4 == 0: basevars.state = "lunch"
@@ -30,7 +31,7 @@ def loop():
 
 if __name__ == "__main__":
     print("\033[?25l")
-    t = threading.Thread(target=inputs, daemon=True)
+    t = threading.Thread(target=input_.inputs, daemon=True)
     t.start()
     try: loop()
     finally:
