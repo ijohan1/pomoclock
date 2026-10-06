@@ -1,26 +1,30 @@
 import threading
 
-import mechanic, keys
+import mechanic, keyboard, timerclass
 
 
-keys.thread.start()
-
+keyboard.thread.start()
+timer = timerclass.Clock()
 i = 0
 
+
 while True:
-    mechanic.working()
-    mechanic.question()
-    mechanic.breaking()
+    timer.running(mechanic.working(), mechanic.workState())
+    timer.question()
+    timer.running(mechanic.breaking(), mechanic.breakState())
     i += 1
-    keys.thread.wait()
-    mechanic.question()
-    keys.thread.wait()
+    keyboard.thread.wait()
+    timer.question()
+    keyboard.thread.wait()
+
 
     if i == 3:
-        mechanic.working()
-        mechanic.question()
-        keys.thread.wait()
-        mechanic.longBreaking()
+        timer.running(mechanic.working(), mechanic.workState())
+        timer.question()
+        keyboard.thread.wait()
+        timer.running(mechanic.longBreaking(), mechanic.longBreakState())
         i = 0
-        mechanic.question()
-        keys.thread.wait()
+        timer.question()
+        keyboard.thread.wait()
+
+
