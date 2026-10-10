@@ -6,7 +6,7 @@ import mechanic
 
 class Clock():
     def __init__(self):
-        self.runs = self.running
+        self.runs = 'Rybka'
         self.waiting = False
         self.paused = False
         self.state = None
@@ -14,30 +14,30 @@ class Clock():
     def running(self, duration, state):
         start = time.time()
         elapsed = 0
-        lastPaused = None
+        last_paused = None
         seconds = duration
-        totalSeconds = 0
+        total_seconds = 0
 
 
-        while seconds > 0 and self.running:
+        while seconds > 0:
             if self.paused:
-                if lastPaused is None:
-                    lastPaused = time.time()
+                if last_paused is None:
+                    last_paused = time.time()
                 time.sleep(0.1)
                 continue
 
 
-            if lastPaused is not None:
-                elapsed += time.time() - lastPaused
-                lastPaused = None
+            if last_paused is not None:
+                elapsed += time.time() - last_paused
+                last_paused = None
 
-
-            remained = int(time.time() - start - elapsed)
+            time_passed = start + elapsed
+            remained = int(time.time() - time_passed)
             seconds = duration - remained
             
             
             time.sleep(0.2)
-            totalSeconds += (duration - seconds)
+            total_seconds += (duration - seconds)
             print("done.")
             self.waiting = True
             while self.waiting: 
