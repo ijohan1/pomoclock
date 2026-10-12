@@ -9,4 +9,12 @@ def inputs():
             break
        
 
-thread = threading.Thread(target=inputs, daemon=True)
+input_thread = threading.Thread(target=inputs, daemon=True)
+output_thread = threading.Thread(target=inputs, daemon=True)
+
+def wait_input():
+    input_thread.wait()
+
+
+def initialize():
+    input_thread.start()
